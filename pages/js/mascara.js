@@ -1,14 +1,14 @@
-const mask = document.querySelector("#cpf")
-
-mask.addEventListener('keypress', () => {
-    let masklength = mask.value.length
-
-    if (masklength === 3 || masklength === 7) {
-        mask.value += '.'
-    }else if (masklength === 11) {
-        mask.value += '-'
-    }
-    var inpedirLetra = va.value.replace(/\D/g, '')
-
-    va.value = inpedirLetra
+const cpfValidacaoCaracteres = document.getElementById('cpf')
+cpfValidacaoCaracteres.addEventListener('input', (e) => {
+    let value = e.target.value.replace(/\D/g, ""); 
+      if (value.length > 3 && value.length <= 6) {
+        value = value.replace(/(\d{3})(\d+)/, "$1.$2");
+      } else if (value.length > 6 && value.length <= 9) {
+        value = value.replace(/(\d{3})(\d{3})(\d+)/, "$1.$2.$3");
+      } else if (value.length > 9) {
+        value = value.replace(/(\d{3})(\d{3})(\d{3})(\d+)/, "$1.$2.$3-$4");
+      }
+      e.target.value = value;
 })
+
+// const rgValidacaoCaracteres = document.getElementById('rg')
